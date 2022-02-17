@@ -1,17 +1,22 @@
-// stops while styling
-
 import React from "react";
 import "./Header.css";
 import SearchIcon from "@mui/icons-material/Search";
 import ShoppingBasketIcon from "@mui/icons-material/ShoppingBasket";
+import { Link } from "react-router-dom";
+import { useStateValue } from "../../StateProvider";
+
 function Header() {
+	const [{ basket }, dispatch] = useStateValue();
 	return (
 		<div className="header">
 			{/* <img src="/public/assets/amazon.png"    ></img> */}
-			<img
-				className="header__logo"
-				src="https://www.pinclipart.com/picdir/big/57-576184_view-our-amazon-storefront-amazon-logo-white-png.png"
-			></img>
+			<Link to="/">
+				<img
+					className="header__logo"
+					src="https://www.pinclipart.com/picdir/big/57-576184_view-our-amazon-storefront-amazon-logo-white-png.png"
+				></img>
+			</Link>
+
 			<div className="header__options">
 				<span className="header__optionLineOne">Hello</span>
 				<span className="header__optionLineTwo">Select your address</span>
@@ -35,10 +40,15 @@ function Header() {
 					<span className="header__optionLineOne">Your</span>
 					<span className="header__optionLineTwo">Prime</span>
 				</div>
-				<div className="header__optionsBasket">
-					<ShoppingBasketIcon />
-					<span className="header__optionLineTwo__basketCount">0</span>
-				</div>
+				<Link to="../Checkout/Checkout">
+					<div className="header__optionsBasket">
+						<ShoppingBasketIcon />
+
+						<span className="header__optionLineTwo__basketCount">
+							{basket?.length}
+						</span>
+					</div>
+				</Link>
 			</div>
 		</div>
 	);

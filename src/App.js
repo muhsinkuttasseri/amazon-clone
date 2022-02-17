@@ -2,6 +2,7 @@ import React from "react";
 import "./App.css";
 import Header from "./components/Header/Header";
 import Home from "./components/Home/Home";
+import Checkout from "./components/Checkout/Checkout";
 import {
 	BrowserRouter as Router,
 	Routes,
@@ -15,14 +16,16 @@ function App() {
 		//BEM
 		<Router>
 			<div className="App">
+				<Header />
 				<Switch>
-					{/* checkout page */}
+					<Route path="/logIn">
+						<h1>login</h1>
+						<Checkout />
+					</Route>
 					<Route path="/checkout">
-						<Header />
-						<h1>checkout page</h1>
+						<Checkout />
 					</Route>
 					<Route path="/">
-						<Header />
 						<Home />
 					</Route>
 				</Switch>
